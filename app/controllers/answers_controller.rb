@@ -17,6 +17,12 @@ class AnswersController < ApplicationController
     @answer = Answer.new()
   end
 
+  def destroy
+    question = Question.find(params[:question_id])
+    @answers = question.answers.all
+
+  end
+
   private
 
   def answer_params
