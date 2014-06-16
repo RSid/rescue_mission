@@ -26,6 +26,7 @@ class AnswersController < ApplicationController
   def update
     @answer =  Answer.find(params[:id])
     if @answer.update(is_best: true)
+      Answer.where('NOT id=?', params[:id].to_i).update_all(is_best: false)
 
       redirect_to question_path(@answer.question)
     else
