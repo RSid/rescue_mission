@@ -23,6 +23,16 @@ class AnswersController < ApplicationController
 
   end
 
+  def update
+    @answer =  Answer.find(params[:id])
+    if @answer.update(is_best: true)
+
+      redirect_to question_path(@answer.question)
+    else
+
+    end
+  end
+
   private
 
   def answer_params

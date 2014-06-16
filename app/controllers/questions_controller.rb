@@ -6,7 +6,8 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    @answers = @question.answers.all
+    @answers = @question.answers.all.order(:is_best)
+
     @answer = Answer.new
   end
 

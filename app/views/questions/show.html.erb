@@ -4,7 +4,10 @@
 
 <ul>
   <% @answers.each do |answer| %>
+  <%= link_to("Vote Best!", question_answer_path(@question,answer), action: :update, method: :patch) %>
+
   <li><%= answer.answer %></li>
+  <li><%= answer.is_best %></li>
   <% end %>
 </ul>
 
