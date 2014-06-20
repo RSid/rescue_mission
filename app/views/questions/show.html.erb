@@ -3,13 +3,13 @@
 <p><%= @question.question %></p>
 
 <ul>
-  <% @answers.each do |answer| %>
+    <% @answers.each do |answer| %>
 
-  <li>
-  <%= answer.answer %> <%= link_to("Vote Best!", question_answer_path(@question,answer), action: :update, method: :patch) %>
-  </li>
-  <%= answer.is_best == true ? "Best answer above!" : nil %>
-  <% end %>
+    <li>
+    <%= answer.answer %> <%= link_to("Vote Best!", question_answer_path(@question,answer), action: :update, method: :patch) %>
+    </li>
+    <%= answer.is_best == true ? "Best answer above!" : nil %>
+    <% end %>
 </ul>
 
 

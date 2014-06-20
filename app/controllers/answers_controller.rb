@@ -9,7 +9,8 @@ class AnswersController < ApplicationController
     if @answer.save
       redirect_to question_path(@question)
     else
-      render 'questions/new'
+      @answers = @question.answers.all
+      render 'questions/show'
     end
   end
 

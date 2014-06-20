@@ -2,20 +2,12 @@ class User < ActiveRecord::Base
   has_many :questions
   has_many :answers
 
-  def self.find_or_create_from_omniauth(auth)
-    provider = auth.provider
-    uid = auth.uid
-
-    find_by(provider: provider, uid: uid) || create_from_omniauth(auth)
+  def self.find_from_hash(hash)
+    find_by_provider_and_uid(hash['provider'], hash['uid'])
   end
 
-  def self.create_from_omniauth(auth)
-    create(
-      provider: auth.provider,
-      uid: auth.uid,
-      email: auth.info.email,
-      username: auth.info.nickname,
-      avatar_url: auth.info.image
-    )
+  def self.create_from_hash(hash)
+    User.create(:user => user, :uid => hash['uid'], :provider => hash['provider'], :name => hash['user_name'])
   end
+
 end
